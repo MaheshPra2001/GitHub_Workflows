@@ -1,0 +1,34 @@
+name: Print Message
+
+on:
+  push:
+      branches:
+          - 'master'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Build Project
+              run: echo "Building the project...."
+
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Test Project
+              run: echo "running tests...."
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Deploy Project
+              run: echo "Deploying the project...."
